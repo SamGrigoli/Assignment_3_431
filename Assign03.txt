@@ -1,0 +1,45 @@
+1. (if A then false else B)
+
+false = λx.λy.y
+
+so...
+
+A(λx.λy.y)B
+
+
+
+2. (A implies (not B))
+
+A implies B = (not A) ∨ B
+
+not = λp.p(λx.λy.y)(λx.λy.x)
+
+or = λp.λq.ppq
+
+so...
+
+A implies (not B) = (not A) ∨ (not B)
+
+not A = (λp.p(λx.λy.y)(λx.λy.x))A
+
+not B = (λp.p(λx.λy.y)(λx.λy.x))B
+
+A implies (not B) = or (not A)(not B)
+
+
+
+3. (A XOR B (A exclusive-OR B)
+
+XOR = (A ∨ B) ∧ not (A ∧ B)
+
+and = λp.λq.pq(λx.λy.y)
+
+or AB = (λp.λq.ppq)AB
+
+and AB = (λp.λq.pq(λx.λy.y) )AB
+
+not (and AB) = (λp.p(λx.λy.y)(λx.λy.x))(and AB)
+
+so...
+
+A⊕B = (λp.λq.ppq)AB∧(λp.p(λx.λy.y)(λx.λy.x))((λp.λq.pq(λx.λy.y))AB)
