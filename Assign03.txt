@@ -1,4 +1,6 @@
-1. (if A then false else B)
+1. Written By: Sam Grigoli
+
+(if A then false else B)
 
 false = λx.λy.y
 
@@ -6,9 +8,11 @@ so...
 
 A(λx.λy.y)B
 
+-------------
 
+2. Written By: Sam Grigoli
 
-2. (A implies (not B))
+(A implies (not B))
 
 A implies B = (not A) ∨ B
 
@@ -28,7 +32,9 @@ A implies (not B) = or (not A)(not B)
 
 
 
-3. (A XOR B (A exclusive-OR B)
+3. Written By: Sam Grigoli
+
+(A XOR B (A exclusive-OR B)
 
 XOR = (A ∨ B) ∧ not (A ∧ B)
 
@@ -43,3 +49,94 @@ not (and AB) = (λp.p(λx.λy.y)(λx.λy.x))(and AB)
 so...
 
 A⊕B = (λp.λq.ppq)AB∧(λp.p(λx.λy.y)(λx.λy.x))((λp.λq.pq(λx.λy.y))AB)
+
+
+
+4. Written By: Gabriel Otero
+
+  a. Base Case:
+
+    The base case is (3,2). (3,2) can be written as (2^(1 + 1) + 1, 2^(1)).
+
+  b.  structural induction
+
+    (3x-2y, x) = (3(2^(n + 1) + 1) - 2(2^(n)), 2^(n + 1) + 1)
+
+    (3x - 2y, x) = (3 * 2^(n+1) + 3 - 2 * 2^(n), 2^(n + 1) + 1)
+
+    (3x - 2y, x) = (2 * 2^(n + 1) + 2^(n + 1) + 3 - 2 * 2^(n), 2^(n + 1) + 1)
+
+    (3x - 2y, x) = (2 * 2^(n + 1) + 2^(n) + 3, 2^(n + 1) + 1)
+
+    (3x - 2y, x) = (2^(n + 2) + 2^(n) + 3, 2^(n + 1) + 1) 
+
+    (3x - 2y, x) = (2^((n + 1) + 1) + 1, 2^(n + 1))
+
+    Therefore, the inductive step holds.
+
+5. Written By: Gabriel Otero
+
+  a. Base Case:
+
+    reflect(Empty) = Empty
+
+    inorder(Empty) = []
+
+    rev([]) = []
+
+    rev(inorder(reflect(Empty))) = [] = inorder(Empty)
+
+  b. structural induction
+
+    x = Node(n, l, r)
+
+    reflect(x) = Node(n, r, l)
+
+    inorder(reflect(x)) = inorder(r) cons[n] inorder(l)
+
+    rev(inorder(r) cons[n] inorder(l)) = rev(inorder(l)) cons[n] rev(inorder(r))
+
+    rev(inorder(reflect(l))) = inorder(l) AND rev(inorder(reflect(r))) = inorder(r)
+
+    rev(inorder(r) cons[n] inorder(l)) = inorder(l) cons[n] inorder(r)
+
+    inorder(x) = inorder(l) cons[n] inorder(r)
+
+  c. Proven:
+
+    rev(inorder(reflect(x))) = inorder(x)
+
+6. Written By: Gabriel Otero
+
+  a. Base Case:
+
+    reflect(Empty) = Empty
+
+    postorder(Empty) = []
+
+    preorder(Empty) = []
+
+    rev([]) = []
+
+    postorder(reflect(Empty)) = [] = rev(preorder(Empty)).
+
+  b. Structural Induction
+
+    x = Node(n, l, r)
+
+    reflect(x) = Node(n, reflect(r), reflect(l))
+
+    postorder(reflect(x)) = postorder(reflect(r)) ++ postorder(reflect(l)) ++ [n]
+
+    preorder(x) = [n] ++ preorder(l) ++ preorder(r)
+
+    rev(preorder(x)) = rev(preorder(r)) ++ rev(preorder(l)) ++ [n]
+
+    postorder(reflect(l)) = rev(preorder(l)), postorder(reflect(r)) = rev(preorder(r))
+
+    postorder(reflect(x)) = rev(preorder(r)) ++ rev(preorder(l)) ++ [n]
+
+  c. Proven:
+
+    postorder(reflect(x)) = rev(preorder(x))
+
