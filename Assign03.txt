@@ -70,9 +70,9 @@ A⊕B = (λp.λq.ppq)AB∧(λp.p(λx.λy.y)(λx.λy.x))((λp.λq.pq(λx.λy.y))A
 
     (3x - 2y, x) = (2^(n + 2) + 2^(n) + 3, 2^(n + 1) + 1) 
 
-    (3x - 2y, x) = (2^((n + 1) + 1) + 1, 2^(n + 1))
+  c. Proven
 
-    Therefore, the inductive step holds.
+    (3x - 2y, x) = (2^((n + 1) + 1) + 1, 2^(n + 1))
 
 5. Written By: Gabriel Otero
 
@@ -86,7 +86,13 @@ A⊕B = (λp.λq.ppq)AB∧(λp.p(λx.λy.y)(λx.λy.x))((λp.λq.pq(λx.λy.y))A
 
     rev(inorder(reflect(Empty))) = [] = inorder(Empty)
 
-  b. structural induction
+  b. Hypothesis
+
+    rev (inorder (reflect left)) = inorder(left)
+
+    rev (inorder (reflect right)) = inorder(right)
+
+  c. structural induction
 
     x = Node(n, l, r)
 
@@ -102,7 +108,7 @@ A⊕B = (λp.λq.ppq)AB∧(λp.p(λx.λy.y)(λx.λy.x))((λp.λq.pq(λx.λy.y))A
 
     inorder(x) = inorder(l) cons[n] inorder(r)
 
-  c. Proven:
+  d. Proven:
 
     rev(inorder(reflect(x))) = inorder(x)
 
@@ -120,7 +126,11 @@ A⊕B = (λp.λq.ppq)AB∧(λp.p(λx.λy.y)(λx.λy.x))((λp.λq.pq(λx.λy.y))A
 
     postorder(reflect(Empty)) = [] = rev(preorder(Empty)).
 
-  b. Structural Induction
+  b. Hypothesis
+
+    postorder(reflect(x)) = rev(preorder(x)).
+
+  c. Structural Induction
 
     x = Node(n, l, r)
 
@@ -136,7 +146,7 @@ A⊕B = (λp.λq.ppq)AB∧(λp.p(λx.λy.y)(λx.λy.x))((λp.λq.pq(λx.λy.y))A
 
     postorder(reflect(x)) = rev(preorder(r)) ++ rev(preorder(l)) ++ [n]
 
-  c. Proven:
+  d. Proven:
 
     postorder(reflect(x)) = rev(preorder(x))
 
